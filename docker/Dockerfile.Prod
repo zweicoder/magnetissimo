@@ -1,0 +1,13 @@
+# Prod Image that allows instant deployment after a git clone
+FROM magnetissimo_base
+
+WORKDIR /app
+
+# Copy source files
+COPY . .
+
+# Install deps
+RUN mix deps.get
+
+# Start the server
+CMD mix do compile, ecto.migrate, phoenix.server
